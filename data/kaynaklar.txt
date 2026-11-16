@@ -1,0 +1,4 @@
+# kaynaklar.txt: tur;no;baslik;yazar;yil;toplam;mevcut;ek1;ek2;ek3;ek4
+KITAP;1;Temiz Kod;Robert Martin;2008;3;3;464;9780132350884;-;-
+DERSKITABI;2;Java Nasil Programlanir;Deitel;2020;2;2;1100;9780136519102;BMT209;3
+DERGI;3;Bilim ve Teknik;TUBITAK;2026;5;5;650;Kasim;-;-

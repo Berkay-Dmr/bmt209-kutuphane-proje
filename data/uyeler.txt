@@ -1,0 +1,3 @@
+# uyeler.txt: tur;no;ad;soyad;eposta;telefon;borc;ek1;ek2
+O;1;Ayse;Yilmaz;ayse@gazi.edu.tr;5551112233;0.0;Bilgisayar;2
+A;2;Mehmet;Kaya;mkaya@gazi.edu.tr;5552223344;0.0;Dr.;Teknoloji
