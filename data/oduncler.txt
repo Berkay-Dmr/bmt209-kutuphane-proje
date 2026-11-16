@@ -1,0 +1,2 @@
+# oduncler.txt: kaynakNo;uyeNo;alis;sonTeslim;iade;ceza
+1;1;2026-10-20;2026-11-03;-;0.0
