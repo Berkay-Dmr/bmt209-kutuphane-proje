@@ -1,4 +1,5 @@
 package exception;
+/** exceptions paketi ekledni ve gerekenler yazıldı */
 
 public class KayitBulunamadiException extends Exception{
 
