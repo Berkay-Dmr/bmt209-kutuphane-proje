@@ -266,4 +266,16 @@ public abstract class Kaynak implements OduncVerilebilir, Ucretlendirilebilir, C
         this(++sonNo, baslik, yazar, yayinYili, toplamAdet, toplamAdet);
     }
 
+    /** arayuz geregi kaynagin odunc verilmeye uygun olup olmadigini dondurur */
+    @Override
+    public boolean oduncVerilebilirMi(){
+        return mevcutMu();
+    }
+
+    /** arayuz geregi kaynagin azami odunc suresini gun cinsinden dondurur */
+    @Override
+    public int getOduncSuresiGun(){
+        return maxOduncSuresi();
+    }
+
 }
