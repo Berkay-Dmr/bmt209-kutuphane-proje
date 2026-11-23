@@ -1,4 +1,4 @@
 package model;
 public enum KaynakDurumu {
-    MEVCUT,ODUNCTE,REZERVE,KAYIP
+    MEVCUT,ODUNC_VERILDI,REZERVE,KAYIP
 }
