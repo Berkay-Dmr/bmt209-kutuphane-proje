@@ -55,12 +55,13 @@ public abstract class Kaynak implements OduncVerilebilir, Ucretlendirilebilir, C
             durumGuncelle();
         }
     }
+    /** gecikme gunune gore ceza tutarini hesaplar */
     public double cezaHesapla(int gecikmeGunu){
-        if(gecikmeGunu<=0){
+        if(gecikmeGunu <= 0){
             return 0.0;
         }
         else{
-            return gecikmeGunu*getGunlukCeza();
+            return gecikmeGunu * getGunlukCeza();
         }
     }
 
