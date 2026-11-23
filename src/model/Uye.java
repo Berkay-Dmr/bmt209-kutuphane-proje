@@ -4,7 +4,34 @@ import util.Dogrulayici;
 // sırası ile egrekli olan sınıfları import ettik ve paketi tanımladık
 public abstract class Uye{
 
-    private static int  sonUyeNo = 0 ;
+    private static int sonNo = 0 ;
+    public static final int MAKS_AD_UZUNLUGU = 40;
+
+
+    public void bilgiYazdir(){
+        System.out.println(toString());
+    }
+    @Override
+    public boolean equals (Object o){
+        if(this == o){
+            return true;
+        }
+        else if (o == null || getClass() != o.getClass()){
+            return false;
+        }
+        Uye diger = (Uye) o;
+        return this.uyeNo == diger.uyeNo;
+    }
+
+    @Override
+    public int hashCode(){
+        return Integer.hashCode(uyeNo);
+    }
+    public static void sayaciAyarla(int enBuyukNo){
+        if(enBuyukNo > sonNo){
+            sonNo = enBuyukNo;
+        }
+    }
     private final int uyeNo;
 
     private final char uyeTuruKodu ;
@@ -51,15 +78,34 @@ public abstract class Uye{
     public boolean isAktifMi(){
         return aktifMi;
     }
+    /** bu kısmda @throws ile beraber hata fırlattık */
 
     public void setAd(String ad) {
 
-        if(Dogrulayici.bosMu(ad)){
-            throw  new GecersizVeriException("isim Boş olamaz");
+        if (Dogrulayici.bosMu(ad) || ad.trim().length() > MAKS_AD_UZUNLUGU){
+            throw new GecersizVeriException("İsim boş veya 40 karakterden uzun olamaz");
         }
         else{
             this.ad = ad;
         }
+    }
+
+    public void setTelefon(long telefon) {
+        this.telefon = telefon;
+    }
+
+    /** bu kısımda da yukarıda yaptığımız gibi @throws ile bereaber hatayı fırlattık*/
+    public void setBorc(double borc) {
+        if(borc<0){
+            throw new GecersizVeriException("Borç eksi olamaz...");
+        }
+        else{
+            this.borc = borc;
+        }
+    }
+
+    public void setGecikmeCarpani(float gecikmeCarpani) {
+        this.gecikmeCarpani = gecikmeCarpani;
     }
 
     public void setSoyad(String soyad) {
@@ -93,23 +139,16 @@ public abstract class Uye{
          this.uyeTuruKodu = uyeTuruKodu;
          this.gecikmeCarpani = gecikmeCarpani;
 
-         if(borc<0){
-             throw new GecersizVeriException("Borç negatif olamaz !! ");
-         }
-         else {
-             this.borc = borc;
-         }
+         setBorc(borc);
          this.aktifMi = true;
-         if(uyeNo > sonUyeNo){
-             sonUyeNo = uyeNo;
-         }
+         sayaciAyarla(uyeNo);
 
 
 // 8 parametreli yapıcıyı yazdık ve içindeki gerekli atamaları yaptık
      }
 
     protected Uye(String ad, String soyad, String eposta, long telefon, double borc, char uyeTuruKodu, float gecikmeCarpani){
-        this( ++sonUyeNo ,  ad , soyad,  eposta , telefon , borc ,  uyeTuruKodu , gecikmeCarpani);
+        this( ++sonNo,  ad , soyad,  eposta , telefon , borc ,  uyeTuruKodu , gecikmeCarpani);
 
     }//burada da 7 parametreli yapıcıyı yaptık
 
@@ -122,7 +161,7 @@ public abstract class Uye{
         }
     }
 
-    public void borcOde(double tutar){
+    public void borcode(double tutar){
         if(tutar <= 0 || tutar > this.borc){
             throw new GecersizVeriException("tutar sıfırdan küçük ya da eşit olamaz");
         }
@@ -131,8 +170,13 @@ public abstract class Uye{
         }
     }
 
-    public abstract int getMaxOduncLimiti(); // soyut metıt yazıldı
+    /** Üyenin aynı anda ödünç alabileceği maksimum kaynak sayısını döndürür. */
+    public abstract int maxOduncAdedi();
 
+    /** Üyenin bir kaynağı ödünç alabileceği maksimum gün sayısını döndürmesi sağlandı.. */
+    public abstract int oduncSuresiGun();
+
+    /** to string override ettik ve kullanılacak şekilde ayarladnı*/
     @Override
     public String toString(){
         return "üye no : " + uyeNo + " Ad : " + ad + " Soyad " + soyad + " Borç : " + borc ; // sırası ile toString metodu Override edildi
