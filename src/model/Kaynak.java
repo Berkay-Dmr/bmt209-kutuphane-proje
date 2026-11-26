@@ -21,7 +21,8 @@ public abstract class Kaynak implements OduncVerilebilir, Ucretlendirilebilir, C
 
     public abstract int maxOduncSuresi();
     /**mevcuMu override edildi ve kullnıldı*/
-    @Override
+
+
     public boolean mevcutMu(){
     return mevcutAdet>0 && !rezerveMi;
     }
